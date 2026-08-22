@@ -96,7 +96,7 @@ that goes well beyond BMElib's original scope.
 
 For the full comparison — including a 15-point feature table and a complete
 MATLAB-to-Python function mapping — see
-**[BMELIB_COMPARISON.md](BMELIB_COMPARISON.md)**.
+**[BMELIB_COMPARISON.md](./stamps/BMELIB_COMPARISON.md)**.
 
 ---
 
@@ -122,13 +122,14 @@ six >= 1.15
 | `rpy2` + R | `gam`, `dlnm`, `stl` time-series decomposition |
 | `nbformat` | Running/generating the tutorial notebooks |
 
-### Install from source (recommended for development)
+### Install from source
 
 ```bash
-# Clone or navigate to the package root
-cd /path/to/stamps_v3/stamps
+# Clone the repository
+git clone https://github.com/NTU-STEMLab/stamps.git
 
-# Install in editable mode into your active environment
+# Navigate to the package root and install in editable mode
+cd stamps/stamps
 pip install -e .
 ```
 
@@ -136,7 +137,7 @@ pip install -e .
 
 ```bash
 conda activate bme
-pip install -e /path/to/stamps_v3/stamps/
+pip install -e /path/to/stamps/stamps/
 ```
 
 ### Install optional dependencies
@@ -212,6 +213,8 @@ Interactive Jupyter Notebook tutorials are in the `tutorials/` directory:
 | `06_bme_probabilistic_soft_data.ipynb` | BME with Gaussian soft PDFs, posterior PDF, credible intervals |
 | `07_bme_spacetime.ipynb` | Space-time BME with CST covariance models |
 | `08_simulation.ipynb` | Unconditional/conditional random field simulation |
+| `09_bme_categorical.ipynb` | BME for categorical spatial data |
+| `10_anisotropy_analysis.ipynb` | Anisotropy estimation and analysis |
 
 **Run tutorials in order** (each saves intermediate results used by the next).
 
@@ -221,19 +224,6 @@ pip install nbformat matplotlib
 cd tutorials/
 jupyter lab
 ```
-
----
-
-## Running the test suite
-
-```bash
-cd /path/to/stamps_v3
-bash run_tests.sh
-# With coverage report:
-bash run_tests.sh --cov
-```
-
-Tests are in `tests/` and cover covariance models, soft data encoding, BME estimation, simulation, and kriging.
 
 ---
 
@@ -248,11 +238,11 @@ STAMPS is released under the [GNU General Public License v3.0](LICENSE).
 If you use STAMPS in your research, please cite:
 
 ```bibtex
-  @misc{yu2018stamps,
+@misc{yu2018stamps,
   author       = {Hwa-Lung Yu and Shang-Chen Ku and Chieh-Han Lee
                   and Hua-Ting Tseng and Shih-Yao Lee},
   title        = {STAMPS: Spatial and Temporal Analysis and Mapping Python Suite},
-    howpublished = {\url{https://gitlab.com/STEMLabTW/stamps}},
+  howpublished = {\url{https://github.com/NTU-STEMLab/stamps}},
   year         = {2018}
-  }
+}
 ```
