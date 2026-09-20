@@ -1,7 +1,7 @@
 # STAMPS — Spatial and Temporal Analysis and Mapping Python Suite
 
-**Version:** 1.0.1  
-**License:** [GNU General Public License v3.0](LICENSE)  
+**Version:** 1.0.3  
+**License:** [MIT](LICENSE)  
 **Maintainer:** [STEMLab](https://stemlab.bse.ntu.edu.tw/wordpress/), National Taiwan University
 
 > **Upgrading from 1.0.0?** The repository layout was flattened: `setup.py` now sits at
@@ -162,7 +162,7 @@ pip install rpy2
 
 ```bash
 python -c "import stamps; from stamps.bme.softconverter import probaUniform; print('stamps OK')"
-pip show stamps   # should show Version: 1.0.1
+pip show stamps   # should show Version: 1.0.3
 ```
 
 ---
@@ -293,7 +293,7 @@ as `stamps.<module>`. To update existing code:
 
 ## License
 
-STAMPS is released under the [GNU General Public License v3.0](LICENSE).
+STAMPS is released under the [MIT License](LICENSE). Versions 1.0.0–1.0.2 were released under GPL-3.0.
 
 ---
 

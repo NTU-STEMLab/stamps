@@ -1,13 +1,13 @@
 import os
 from setuptools import setup, find_packages
 
-VERSION = '1.0.2'
+VERSION = '1.0.3'
 
 
 setup(
     name = 'stamps',
     packages = find_packages(exclude=['contrib', 'docs', 'tests']),
-    license = 'GPLv3',
+    license = 'MIT',
     version = VERSION,
     description = 'Spatial Temporal Analysis and Mapping Python Suite',
     install_requires = [
