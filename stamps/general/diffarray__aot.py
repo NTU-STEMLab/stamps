@@ -3,7 +3,11 @@ import os
 
 from six.moves import range
 import numpy as np
-from numba.pycc import CC
+try:  # optional dependency
+    from numba.pycc import CC
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    CC = MissingDependency('numba.pycc.CC')
 
 
 

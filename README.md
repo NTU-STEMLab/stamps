@@ -169,8 +169,7 @@ pip show stamps   # should show Version: 1.0.1
 
 ## Quick start
 
-The example below is self-contained (synthetic data) and is also available as
-`docs/quickstart.py`. It requires `nlopt` for `covmodelfit`.
+The example below is self-contained (synthetic data). It requires `nlopt` for `covmodelfit`.
 
 ```python
 import numpy as np

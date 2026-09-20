@@ -6,9 +6,17 @@ Created on Fri Jul  3 08:48:06 2015
 """
 import numpy as np
 import shapefile as shp
-import matplotlib.pyplot as plt
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
 #  import matplotlib.patches as patches
-from matplotlib.patches import Polygon
+try:  # optional dependency
+    from matplotlib.patches import Polygon
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    Polygon = MissingDependency('matplotlib.patches.Polygon')
 #  from matplotlib.collections import PatchCollection
 
 

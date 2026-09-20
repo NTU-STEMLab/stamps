@@ -9,7 +9,11 @@ estimate_anisotropy_params, isotropy_test.
 """
 import numpy
 import numpy as np
-import matplotlib.pyplot as plt
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
 from scipy.optimize import minimize
 from scipy.stats import chi2
 

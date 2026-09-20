@@ -15,7 +15,11 @@ except ImportError as e:
         'stamps: rpy2 is required for STL functions. '
         'Install it with:  pip install rpy2'
     ) from e
-import matplotlib.pyplot as plt
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
 from numpy import asarray, ceil, isnan
 
 

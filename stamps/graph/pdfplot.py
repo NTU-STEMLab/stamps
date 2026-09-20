@@ -4,7 +4,11 @@ Created on Sun Oct  4 23:53:36 2015
 
 @author: hdragon689
 """
-import matplotlib.pyplot as plt
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
 
 from ..bme.softconverter import proba2probdens
 

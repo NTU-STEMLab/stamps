@@ -1,6 +1,14 @@
-import matplotlib.pyplot as plt
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
 import numpy as np
-import matplotlib.mlab as mlab
+try:  # optional dependency
+    import matplotlib.mlab as mlab
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    mlab = MissingDependency('matplotlib.mlab')
 import math
 
 def plot_marginal(m, v, zs=None, i=0, show=True):

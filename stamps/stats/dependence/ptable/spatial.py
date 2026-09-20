@@ -9,7 +9,6 @@ This module provides functions for:
 import numpy as np
 from scipy.spatial.distance import cdist
 from scipy.cluster.hierarchy import linkage, fcluster
-from sklearn.metrics import pairwise_distances
 import warnings
 
 
@@ -550,12 +549,12 @@ def identify_homogeneous_regions(
     
     elif metric == 'euclidean':
         P_flat = P.transpose(3, 0, 1, 2).reshape(n_centers, -1)
-        distance_matrix = pairwise_distances(P_flat, metric='euclidean')
+        distance_matrix = cdist(P_flat, P_flat)
     
     elif metric == 'hellinger':
         P_flat = P.transpose(3, 0, 1, 2).reshape(n_centers, -1)
         P_flat = np.sqrt(P_flat)
-        distance_matrix = pairwise_distances(P_flat, metric='euclidean')
+        distance_matrix = cdist(P_flat, P_flat)
     
     else:
         raise ValueError(f"Unknown metric: {metric}")

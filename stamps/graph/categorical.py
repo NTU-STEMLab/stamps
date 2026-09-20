@@ -33,9 +33,21 @@ from __future__ import annotations
 
 import warnings
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.colors import ListedColormap
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
+try:  # optional dependency
+    import matplotlib.patches as mpatches
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    mpatches = MissingDependency('matplotlib.patches')
+try:  # optional dependency
+    from matplotlib.colors import ListedColormap
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    ListedColormap = MissingDependency('matplotlib.colors.ListedColormap')
 
 __all__ = [
     "plot_cross_section",

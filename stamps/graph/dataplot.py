@@ -7,10 +7,20 @@ refine on Tue Oct 1 12:16:25 2019
 @refiner: HuaTing
 """
 import numpy as np
-import matplotlib.pyplot as plt
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
 import pandas as pd
 from pandas.plotting import scatter_matrix
-from matplotlib.dates import DateFormatter,rrulewrapper, RRuleLocator
+try:  # optional dependency
+    from matplotlib.dates import DateFormatter,rrulewrapper, RRuleLocator
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    DateFormatter = MissingDependency('matplotlib.dates.DateFormatter')
+    rrulewrapper = MissingDependency('matplotlib.dates.rrulewrapper')
+    RRuleLocator = MissingDependency('matplotlib.dates.RRuleLocator')
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 

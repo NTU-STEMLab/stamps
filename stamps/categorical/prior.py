@@ -45,8 +45,17 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 import numpy as np
 import pandas as pd
-from sklearn.impute import SimpleImputer
-from sklearn.model_selection import GroupKFold, StratifiedKFold
+try:  # optional dependency
+    from sklearn.impute import SimpleImputer
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    SimpleImputer = MissingDependency('sklearn.impute.SimpleImputer')
+try:  # optional dependency
+    from sklearn.model_selection import GroupKFold, StratifiedKFold
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    GroupKFold = MissingDependency('sklearn.model_selection.GroupKFold')
+    StratifiedKFold = MissingDependency('sklearn.model_selection.StratifiedKFold')
 
 # ---------------------------------------------------------------------------
 # Optional dependency sentinels

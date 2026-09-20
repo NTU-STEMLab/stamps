@@ -26,7 +26,11 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 import numpy as np
 from scipy.cluster.hierarchy import linkage, fcluster, dendrogram
 from scipy.spatial.distance import pdist
-from sklearn.preprocessing import StandardScaler
+try:  # optional dependency
+    from sklearn.preprocessing import StandardScaler
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    StandardScaler = MissingDependency('sklearn.preprocessing.StandardScaler')
 
 __all__ = [
     "identify_homogeneous_regions_data",

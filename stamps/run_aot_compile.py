@@ -3,7 +3,11 @@ import platform
 import struct
 import shutil
 import subprocess
-from numba.pycc import CC
+try:  # optional dependency
+    from numba.pycc import CC
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    CC = MissingDependency('numba.pycc.CC')
 
 FILE_FOLDER = os.path.dirname(__file__)
 if platform.platform().startswith('Darwin'):

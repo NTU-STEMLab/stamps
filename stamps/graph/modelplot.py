@@ -6,7 +6,11 @@ Created on Thu Jul  2 22:16:03 2015
 """
 from six.moves import range
 import numpy as np
-import matplotlib.pyplot as plt
+try:  # optional dependency
+    import matplotlib.pyplot as plt
+except ImportError:
+    from stamps.general.optional import MissingDependency
+    plt = MissingDependency('matplotlib.pyplot')
 from mpl_toolkits.mplot3d import Axes3D
 from ..stats.dependence.stcovfit import covmodelest,anisocovmodelest
 from ..general.coord2K import coord2dist
