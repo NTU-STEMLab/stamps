@@ -34,10 +34,10 @@ cells.append(nbf.v4.new_code_cell(
 "REPO_ROOT = os.path.abspath(os.path.join(os.getcwd(), '..'))\n"
 "if REPO_ROOT not in sys.path:\n"
 "    sys.path.insert(0, REPO_ROOT)\n\n"
-"from stamps.stamps.stats.dependence.stcov import stcov\n"
-"from stamps.stamps.stats.dependence.stcovfit import covmodelfit, coregfit\n"
-"from stamps.stamps.bme.bme_transform import other2gauss\n"
-"from stamps.stamps.graph.modelplot import modelplot\n\n"
+"from stamps.stats.dependence.stcov import stcov\n"
+"from stamps.stats.dependence.stcovfit import covmodelfit, coregfit\n"
+"from stamps.bme.bme_transform import other2gauss\n"
+"from stamps.graph.modelplot import modelplot\n\n"
 "plt.rcParams.update({'figure.dpi': 110, 'font.size': 10})\n"
 "DATA_DIR = os.path.join(os.getcwd(), 'data')\n\n"
 "with open(os.path.join(DATA_DIR, 'tutorial01_data.pkl'), 'rb') as f:\n"
@@ -132,7 +132,7 @@ cells.append(nbf.v4.new_code_cell(
 ))
 
 cells.append(nbf.v4.new_code_cell(
-"from stamps.stamps.models.covmodel import nuggetC, sphericalC\n\n"
+"from stamps.models.covmodel import nuggetC, sphericalC\n\n"
 "h_plot = np.linspace(0, lag_h.max(), 300)\n"
 "C_fitted = (nuggetC(h_plot, *fitted_covparam[0])\n"
 "           + sphericalC(h_plot, *fitted_covparam[1]))\n\n"
@@ -267,7 +267,7 @@ cells.append(nbf.v4.new_code_cell(
 
 cells.append(nbf.v4.new_code_cell(
 "# Visualise fitted LMC: diagonal auto-covariances\n"
-"from stamps.stamps.models.covmodel import nuggetC, sphericalC\n\n"
+"from stamps.models.covmodel import nuggetC, sphericalC\n\n"
 "h_plot = np.linspace(0, D_arr.max(), 300)\n\n"
 "fig, axes = plt.subplots(1, 3, figsize=(16, 4))\n"
 "varnames = ['Sand', 'Silt', 'Clay']\n"

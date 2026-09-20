@@ -34,7 +34,7 @@ cells.append(nbf.v4.new_code_cell(
 "REPO_ROOT = os.path.abspath(os.path.join(os.getcwd(), '..'))\n"
 "if REPO_ROOT not in sys.path:\n"
 "    sys.path.insert(0, REPO_ROOT)\n\n"
-"from stamps.stamps.estimation.kriging import kriging, cokriging, cokrigingT\n\n"
+"from stamps.estimation.kriging import kriging, cokriging, cokrigingT\n\n"
 "plt.rcParams.update({'figure.dpi': 110, 'font.size': 10})\n"
 "DATA_DIR = os.path.join(os.getcwd(), 'data')\n\n"
 "# --- Load dataset from Tutorial 01 ---\n"
@@ -194,7 +194,7 @@ cells.append(nbf.v4.new_markdown_cell(
 cells.append(nbf.v4.new_code_cell(
 "# For univariate NST kriging: use the single-variable LMC (nst_result)\n"
 "# Build a 1-variable LMC from the univariate fitted NST parameters\n"
-"from stamps.stamps.models.covmodel import nuggetC, sphericalC\n\n"
+"from stamps.models.covmodel import nuggetC, sphericalC\n\n"
 "def build_lmc_from_univariate(model_names, model_params):\n"
 "    \"\"\"Convert univariate model params to LMC format (1x1 sill matrices).\"\"\"\n"
 "    lmc = []\n"

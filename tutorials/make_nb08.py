@@ -40,7 +40,7 @@ cells.append(nbf.v4.new_code_cell(
 "REPO_ROOT = os.path.abspath(os.path.join(os.getcwd(), '..'))\n"
 "if REPO_ROOT not in sys.path:\n"
 "    sys.path.insert(0, REPO_ROOT)\n\n"
-"from stamps.stamps.stats.simulation.simulation import (\n"
+"from stamps.stats.simulation.simulation import (\n"
 "    simuchol,\n"
 "    simucholcond,\n"
 "    simuseqcond,\n"
@@ -377,7 +377,7 @@ cells.append(nbf.v4.new_markdown_cell(
 ))
 
 cells.append(nbf.v4.new_code_cell(
-"from stamps.stamps.stats.dependence.stcov import stcov\n\n"
+"from stamps.stats.dependence.stcov import stcov\n\n"
 "# Compare variance: model vs. realisations\n"
 "model_sill = sum(p[0] for p in covparam)\n"
 "real_var   = np.var(Zh_seq[:, 0])\n"

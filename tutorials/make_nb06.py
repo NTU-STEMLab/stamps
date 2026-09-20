@@ -33,9 +33,9 @@ cells.append(nbf.v4.new_code_cell(
 "REPO_ROOT = os.path.abspath(os.path.join(os.getcwd(), '..'))\n"
 "if REPO_ROOT not in sys.path:\n"
 "    sys.path.insert(0, REPO_ROOT)\n\n"
-"from stamps.stamps.stats.simulation.simulation import simuchol\n"
-"from stamps.stamps.bme.softconverter import probaGaussian, probaUniform, proba2stat\n"
-"from stamps.stamps.bme.BMEprobaEstimations import (\n"
+"from stamps.stats.simulation.simulation import simuchol\n"
+"from stamps.bme.softconverter import probaGaussian, probaUniform, proba2stat\n"
+"from stamps.bme.BMEprobaEstimations import (\n"
 "    BMEPosteriorMoments,\n"
 "    BMEPosteriorPDF,\n"
 "    BMEPosteriorCI,\n"
@@ -150,7 +150,7 @@ cells.append(nbf.v4.new_code_cell(
 ))
 
 cells.append(nbf.v4.new_code_cell(
-"from stamps.stamps.bme.softconverter import probaGaussian\n\n"
+"from stamps.bme.softconverter import probaGaussian\n\n"
 "# Encode as Gaussian soft data\n"
 "zs_gauss = probaGaussian(z_soft_mean, z_soft_std)\n"
 "soft_type, nl_g, limi_g, pd_g = zs_gauss\n\n"

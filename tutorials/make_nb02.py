@@ -31,12 +31,12 @@ cells.append(nbf.v4.new_code_cell(
 "REPO_ROOT = os.path.abspath(os.path.join(os.getcwd(), '..'))\n"
 "if REPO_ROOT not in sys.path:\n"
 "    sys.path.insert(0, REPO_ROOT)\n\n"
-"from stamps.stamps.models.covmodel import (\n"
+"from stamps.models.covmodel import (\n"
 "    nuggetC, exponentialC, sphericalC, gaussianC, holecosC, holesinC, mexicanhatC, maternC,\n"
 "    nuggetV, exponentialV, sphericalV, gaussianV, holecosV, holesinV, linearV, powerV,\n"
 "    get_model,\n"
 ")\n"
-"from stamps.stamps.general.coord2K import coord2K\n\n"
+"from stamps.general.coord2K import coord2K\n\n"
 "plt.rcParams.update({'figure.dpi': 110, 'font.size': 10})\n"
 "DATA_DIR = os.path.join(os.getcwd(), 'data')\n\n"
 "# Load data from Tutorial 01\n"
@@ -194,11 +194,11 @@ r"$$P_{k\ell}(h) = \Pr\!\left[Z(\mathbf{s}) = k \;\wedge\; Z(\mathbf{s}+\mathbf{
 "\n\nAt lag $h = 0$, the diagonal entries $P_{kk}(0)$ equal the **proportion** of category $k$.  "
 "As lag increases, $P_{kk}(h)$ decays toward $p_k^2$ (independence), "
 "revealing the spatial persistence of each soil type.\n\n"
-"stamps_v3 function: `stamps.stamps.stats.dependence.probatablecalc.probatablecalc`\n"
+"stamps_v3 function: `stamps.stats.dependence.probatablecalc.probatablecalc`\n"
 ))
 
 cells.append(nbf.v4.new_code_cell(
-"from stamps.stamps.stats.dependence import probatablecalc\n\n"
+"from stamps.stats.dependence import probatablecalc\n\n"
 "# Build indicator (one-hot) matrix for soil types 1-4\n"
 "categories = np.unique(code)\n"
 "nc = len(categories)   # 4 soil types\n"
