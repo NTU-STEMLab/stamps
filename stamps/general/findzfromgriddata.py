@@ -21,7 +21,7 @@ def findzfromgriddata(x, y, t, s_grid, t_grid, z_grid, DataObj = None):
     '''
     
     if not DataObj:
-        from nousedataobj import NoUseDataObj
+        from ..bme.nousedataobj import NoUseDataObj
         DataObj = NoUseDataObj()
         
     title = DataObj.getProgressText()

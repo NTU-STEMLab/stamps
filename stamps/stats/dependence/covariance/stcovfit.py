@@ -248,7 +248,9 @@ def covmodelfit(lag_cov_s,lag_cov_t,lag_cov_v,lag_cov_n,covmodel,covparam0,
     idaniso=np.arange(npars-2,npars)
 
   if lower_bnd:
-    low_bnd=covpar2par(lower_bnd)
+    low_bnd=covpar2par(lower_bnd)[0]              # covpar2par returns (params, ns, nt)
+    if theta0 is not None:                        # user bounds cover covparam only
+      low_bnd=np.append(low_bnd,[theta0-np.pi/4, ratio0*0.5])
   else:  
     low_bnd=np.empty(npars)
     low_bnd[idsill]=pars[idsill]*0.3    
@@ -260,7 +262,9 @@ def covmodelfit(lag_cov_s,lag_cov_t,lag_cov_v,lag_cov_n,covmodel,covparam0,
       low_bnd[idaniso[0]]=pars[idaniso[0]]-np.pi/4
       low_bnd[idaniso[1]]=pars[idaniso[1]]*0.5
   if upper_bnd: 
-    up_bnd=covpar2par(upper_bnd)
+    up_bnd=covpar2par(upper_bnd)[0]
+    if theta0 is not None:
+      up_bnd=np.append(up_bnd,[theta0+np.pi/4, np.min([ratio0*2,1.])])
   else:
     up_bnd=np.empty(npars)
     up_bnd[idsill]=pars[idsill]*2.
@@ -271,6 +275,18 @@ def covmodelfit(lag_cov_s,lag_cov_t,lag_cov_v,lag_cov_n,covmodel,covparam0,
       up_bnd[idaniso[0]]=pars[idaniso[0]]+np.pi/4
       up_bnd[idaniso[1]]=np.min([pars[idaniso[1]]*2,1.])
           
+  # Default bounds for pure-nugget components: [0, total initial sill].
+  # (The generic 0.3x-2x band pins the nugget when the initial guess is rough.)
+  models=[covmodel] if isinstance(covmodel,str) else list(covmodel)
+  inug=[idsill[k] for k,m in enumerate(models)
+        if all(part.strip().lower().startswith('nugget') for part in str(m).split('/'))]
+  if inug:
+    total_sill=float(np.sum(pars[idsill]))
+    if not lower_bnd:
+      low_bnd[inug]=0.
+    if not upper_bnd:
+      up_bnd[inug]=total_sill
+
   from ....general import bobyqa as bobyqa  # lazy: nlopt is optional
   result, opt_val=bobyqa.bobyqa( objwls, pars, args, low_bnd, up_bnd )
   

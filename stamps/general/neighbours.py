@@ -308,13 +308,15 @@ def neighbours( c_one, c, z, nmax, dmax ):
             idx_nebr = sorted_idx.reshape( ( -1, 1 ) )
             return c_nebr, z_nebr, d_nebr, n_nebr, idx_nebr
         elif len( index_s[0] ) > nmax:
-            d_nebr = d_xy[index_s[0],:]
-            index_s = ( numpy.sort( d_nebr[:,0].argsort()[:nmax] ), 0 ) #dummy 0 for consistence
-            c_nebr = c[index_s[0],:]
-            z_nebr = z[index_s[0],:]
-            d_nebr = d_xy[index_s[0],:]
-            n_nebr = len( index_s[0] )
-            idx_nebr = index_s[0].reshape( ( -1, 1 ) )
+            # nearest nmax inside dmax, nearest first.  argsort gives positions in
+            # the within-dmax subset; map them back to data indices before indexing.
+            pos = d_xy[index_s[0], 0].argsort(kind='stable')[:nmax]
+            sel = index_s[0][pos]
+            c_nebr = c[sel,:]
+            z_nebr = z[sel,:]
+            d_nebr = d_xy[sel,:]
+            n_nebr = len( sel )
+            idx_nebr = sel.reshape( ( -1, 1 ) )
             return c_nebr, z_nebr, d_nebr, n_nebr, idx_nebr
 
     elif isST == 1:#space time case
@@ -348,13 +350,17 @@ def neighbours( c_one, c, z, nmax, dmax ):
             idx_nebr = index_t[0].reshape( ( -1, 1 ) )[index_s[0][index_r[0]],:]
             return c_nebr, z_nebr, d_nebr, n_nebr, idx_nebr
         elif len( index_r[0] ) > nmax:
-            d_nebr = d_r[index_r[0],:]
-            index_r = ( numpy.sort( d_nebr[:,0].argsort()[:nmax] ), 0 ) #dummy 0 for consistence
-            c_nebr = c[index_t[0],:][index_s[0],:][index_r[0],:]
-            z_nebr = z[index_t[0],:][index_s[0],:][index_r[0],:]
-            d_nebr = d_r[index_r[0],:]
-            n_nebr = len( index_r[0] )
-            idx_nebr = index_t[0].reshape( ( -1, 1 ) )[index_s[0][index_r[0]],:]
+            # nearest nmax by the space-time metric, nearest first.  argsort gives
+            # positions in the index_r subset; map them back through index_r,
+            # index_s and index_t to data indices before indexing.
+            pos = d_r[index_r[0], 0].argsort(kind='stable')[:nmax]
+            sel_r = index_r[0][pos]                 # positions in d_r
+            sel = index_t[0][index_s[0][sel_r]]     # data indices
+            c_nebr = c[sel,:]
+            z_nebr = z[sel,:]
+            d_nebr = d_r[sel_r,:]
+            n_nebr = len( sel )
+            idx_nebr = sel.reshape( ( -1, 1 ) )
             return c_nebr, z_nebr, d_nebr, n_nebr, idx_nebr
 
 

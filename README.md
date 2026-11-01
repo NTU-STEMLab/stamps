@@ -1,6 +1,6 @@
 # STAMPS — Spatial and Temporal Analysis and Mapping Python Suite
 
-**Version:** 1.0.3  
+**Version:** 1.0.4  
 **License:** [MIT](LICENSE)  
 **Maintainer:** [STEMLab](https://stemlab.bse.ntu.edu.tw/wordpress/), National Taiwan University
 
@@ -162,7 +162,7 @@ pip install rpy2
 
 ```bash
 python -c "import stamps; from stamps.bme.softconverter import probaUniform; print('stamps OK')"
-pip show stamps   # should show Version: 1.0.3
+pip show stamps   # should show Version: 1.0.4
 ```
 
 ---
