@@ -101,7 +101,8 @@ def stcov(grid_s, grid_t=None, grid_v=None, lagS=None, lagS_range=None,
   
   Input:
   	
-  grid_s      ns by 2     2D array    cMS
+  grid_s      ns by nd    2D array    cMS, with nd = 1, 2 or 3 spatial
+                                      dimensions (a 1D array is read as nd=1)
   grid_t      nt by 1     2D array or None
                                       tME. Pass None (default) for pure-spatial
                                       observations; a dummy time step is used
@@ -117,7 +118,7 @@ def stcov(grid_s, grid_t=None, grid_v=None, lagS=None, lagS_range=None,
   ang         scalar                  specified direction in radian for directional covariance. 
                                       Default is None for omnidirectional. 
                                       Direction is in radian and zero denotes 
-                                      the horizontal axis
+                                      the horizontal axis. Requires nd = 2.
   angtol      scalar                  angle tolerance in radian for directional
                                       covariance evaluation. Default is 20 degree
   	
@@ -178,12 +179,19 @@ def stcov(grid_s, grid_t=None, grid_v=None, lagS=None, lagS_range=None,
   
   #find spatial difference between x and y, then remember each index
   #將空間軸與時間軸各轉為每點相差的值，並記住其index (用"_i_"表示)
+  # Pair angles are needed only for directional covariance (ang given) and
+  # are defined only in 2-D; computing them always made 1-D and 3-D
+  # coordinates fail.
+  nd=grid_s.shape[1]
+  has_aniso = ang is not None
+  if has_aniso and nd != 2:
+    raise ValueError("stcov: directional covariance (ang) requires 2-D spatial "
+                     "coordinates; grid_s has {} column(s)".format(nd))
   if grid_s.shape[0]<8000:
-    s_diff_i_left,s_diff_i_right,s_diff_v, angdiff=diffarray(grid_s,aniso=True)
+    s_diff_i_left,s_diff_i_right,s_diff_v, angdiff=diffarray(grid_s,aniso=has_aniso)
   else:
     s_diff_i_left,s_diff_i_right,s_diff_v, angdiff= \
-          diffarray(grid_s,lagS.max()+lagS_range[-1],aniso=True)
-  nd=grid_s.shape[1]
+          diffarray(grid_s,lagS.max()+lagS_range[-1],aniso=has_aniso)
   if nd==1:
     s_diff_v=np.abs(s_diff_v).ravel()
   elif nd==2:           
